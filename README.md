@@ -1,2 +1,2 @@
 # calculator
-bathroom calculator
+bathroom calculator project
