@@ -1,1 +1,5 @@
 https://ux-journal.ru/kak-stat-ux-dizaynerom-poshagovoe-rukovodstvo.html
+https://threejs.org/docs/#api/en/math/Vector2
+https://vc.ru/design/163047-kak-stat-veb-dizaynerom-poshagovoe-rukovodstvo
+https://habr.com/ru/company/cleverpumpkin/blog/675372/
+https://nplus1.ru/material/2016/11/04/recurrent-networks
