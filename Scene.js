@@ -8,12 +8,14 @@ window.onload = function() {    /*Выполняется при загрузке
 
     var box = {
         box_width:0,
-        box_height: 0
+        box_height: 0,
+        box_rotation: 0
     } ;
 
     var gui = new dat.GUI();
     gui.add(box,'box_width').min(100).max(1000).step(1);
     gui.add(box,'box_height').min(100).max(1000).step(1);
+    gui.add(box,'box_rotation').min(0).max(100).step(1);
     
 
     var renderer = new THREE.WebGL1Renderer({canvas: canvas});   /* Создание рендерера и присоединение к нему канваса */
@@ -34,12 +36,8 @@ window.onload = function() {    /*Выполняется при загрузке
     scene.add(mesh);
     
     function loop(){
-        
         mesh.geometry = new THREE.BoxGeometry(box.box_width,box.box_height);
-
-         
-
-       
+        mesh.rotation.y += box.box_rotation/1000;
         renderer.render(scene, camera); 
         requestAnimationFrame(function(){loop();});    /* Отправляет запрос на показ следующего кадра и рендерит кадр когда удобно браузеру */
     }
