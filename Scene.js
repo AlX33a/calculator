@@ -1,3 +1,6 @@
+import {OrbitControls} from './modules/OrbitControls.js';
+
+
 window.onload = function() {    /*Выполняется при загрузке окна*/
     var width = window.innerWidth  
     var height = window.innerHeight    /* Получаем ширину и высоту экрана */
@@ -17,6 +20,8 @@ window.onload = function() {    /*Выполняется при загрузке
     gui.add(box,'box_height').min(100).max(1000).step(1);
     gui.add(box,'box_rotation').min(0).max(100).step(1);
     
+    
+    
 
     var renderer = new THREE.WebGL1Renderer({canvas: canvas});   /* Создание рендерера и присоединение к нему канваса */
     renderer.setClearColor(0x000000);
@@ -25,6 +30,9 @@ window.onload = function() {    /*Выполняется при загрузке
 
     var camera = new THREE.PerspectiveCamera(45, width/height, 0.1, 5000 );    /* Создание перспективной камеры  (45- максимальный вертикальный угол обзора, width/height - пропорции отображения камеры)*/
     camera.position.set(0, 0, 1000);    /* Задание позиции камеры */
+
+    const controls = new OrbitControls(camera,renderer.domElement);
+    controls.update();
 
     var light = new THREE.AmbientLight(0xffffff);    /* Рассеянный свет */
     scene.add(light);
@@ -36,8 +44,11 @@ window.onload = function() {    /*Выполняется при загрузке
     scene.add(mesh);
     
     function loop(){
+        
         mesh.geometry = new THREE.BoxGeometry(box.box_width,box.box_height);
+       
         mesh.rotation.y += box.box_rotation/1000;
+        controls.update();
         renderer.render(scene, camera); 
         requestAnimationFrame(function(){loop();});    /* Отправляет запрос на показ следующего кадра и рендерит кадр когда удобно браузеру */
     }
